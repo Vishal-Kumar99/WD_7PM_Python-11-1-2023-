@@ -87,16 +87,66 @@ m.append(100000)
 print("m",m)
 print("l",l)
 
-nnkrishna714ducat@gamil.com
+
 
 a=[1,2,3,4]
 b=[5,6,7,8]
 
-a="         NnkriShna714@Gmail.com         "
-c="krishna    "
-d="   kumar"
-result: "krishnakumar"
+# method of list
 
+c=[1,2,3,4,5]
+print(c.count(4))   #count() method count the occurence of similar type of element in a list 
+
+c.extend([4,4,4,4])   # [1,2,3,4,5,4,4,4,4]
+print(c)
+print(c.count(4))      #count of 4 inside a list c is 5
+
+c.append(1000)
+print(c)
+c.append([1,2,3,4,5])  #[1,2,3,4,5,[1,2,3,4,5]]
+print(c)
+
+c.extend([5,5,6,3,2,4]) #[1,2,3,4,5,[1,2,3,4,5],5,5,6,3,2,4]
+print(c)
+
+c.insert(3,3000000)   #insert(index_value,value) #[1, 2, 3, 3000000, 4, 5, 4, 4, 4, 4, 1000, [1, 2, 3, 4, 5], 5, 5, 6, 3, 2, 4]
+print(c)
+
+c.pop()    # if we will not mentioned any value inside pop(value) then it will remove the last element of list 
+print(c)  
+
+c.pop(6)  # pop(index) :if pop mentioned contain any value inside () then it will remove that element from the list
+print(c)
+
+# c.pop(1000)   #IndexError: pop index out of range
+# print(c)
+
+print(c.index(2))   # 1 
+
+print(len(c))
+
+print(c[15])
+
+# indexing start from 0
+# counting start from 1 when use len()
+# maximum index of list = len(c)-1
+
+d=[1,2,3]
+d.extend("krishna")  
+print(d)             #[1,2,3,'k','r','i','s','h','n','a']
+
+print(len("krishna"))
+
+e=[1,"1",1.0,[1]]
+print(e.remove(1))     #None
+print(e)         #["1",1.0,[1]]
+
+v=[3,4,2,4,5,6,7]
+v.sort()
+print(v)  #[2, 3, 4, 4, 5, 6, 7] bydefault sort it in ascending order 
+
+v.sort(reverse=True)
+print(v)   #[7,6,5,4,4,3,2]
 
 
 
