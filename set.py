@@ -59,3 +59,77 @@ print(dir(set()))
 
 r={1,2,3,4,(1,2)}
 print(r)
+
+# methods of set
+
+a=set()
+print(a.add(1))
+print(a)
+
+a.add(1)
+print(a)
+
+a.add(1.0)  #this is exception 1 and 1.0 are same 2 and 2.0 and soon are same.
+print(a)
+
+a.add("krishna")
+print(a)
+# a.add({1,2,3,4,5})   #set is unhashable or mutable which is not allowed inside a set
+#to read documentation of any method use ctrl+shift+space bar
+
+a.add((1,2,3,4))
+print(a)
+
+# a.add([1,2,3,4])  #list is unhashable or mutable which is not allowed inside a set
+
+print(a)
+
+b=a
+print("b",b)
+
+print("b",b,id(b),type(b))
+print("a",a, id(a),type(a))
+
+#copy()
+c=a.copy()
+print("c",c,id(c),type(c))
+
+c.clear()
+print(c)     #set()
+
+a={1,2,3}
+b={1,4,5}
+print(a.difference(b))   #{2,3}
+print(a)    #{1,2,3}
+
+print("it is a parmanent change",a.difference_update(b))  #None
+print("a :",a)     #{2,3}
+
+print(a.discard(2))
+print(a)
+
+a.discard(10000)
+print(a)
+
+c={1,2,3}
+d={2,3,4}
+print(c.intersection(d))  #{2,3}
+print(c)   #{1,2,3}
+
+print(c.intersection_update(d))  #None
+print(c)      #{2,3}
+
+e={1,2,3}
+f={4,5,6}
+print(e.isdisjoint(f))
+
+krishna={4,5,6}
+sunil={1,2,3,4,5,6}
+print(krishna.issubset(sunil))
+
+print(krishna.issuperset(sunil))
+
+krishna.pop()
+
+
+
