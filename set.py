@@ -131,5 +131,38 @@ print(krishna.issuperset(sunil))
 
 krishna.pop()
 
+print("krishna",krishna)
+
+#Note: array store value but other collection like list tuple set store id of the values
+
+#Note: pop() method in set will remove last id which will read by interpreter from hashing table.
+
+a={1,2,3,4,6}
+print(a.pop())
+print(a)
+b={2,3,4,6}
+print(b.remove(3))
+print(b)
+
+k={1,2,3}
+l={2,3,4}
+print(k.symmetric_difference(l))   #{1,4}
+
+print(k.symmetric_difference_update(l))   #None
+print(k)  #{1,4}
+
+x={1,2,3,4}
+y={3,4,5,6}
+z={11,21,31,41}
+print(x.union(y,z))
+
+print(z.update({101,201,301,401,501}))
+print(z)
+
+print(z.update([102,202,302,402,502]))
+print(z)
+
+print(z.update(10000000000))
+print(z)
 
 
