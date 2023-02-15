@@ -92,3 +92,57 @@ print(2<=2 and 3>=3)  #True
 # not
 
 print("This is True: ",not True)
+
+# Identity operators: is , is not
+
+a="python"
+print(id(a))
+b="Python"
+print(id(b))
+
+print(a is b )  #"python" is "Python"
+print("python" is "Python")  #False
+
+b=[1,2,3,4]
+c=[1,2,3,4]
+print(b is c)
+
+a="krishna"
+print(id(a))
+b="krishna"
+print(id(b))
+print(a is b)
+
+b=[1,2,3,4]
+c=b
+print(id(b))
+print(id(c))
+print(b is c)
+
+a=(1,2,3,4)
+b=(1,2,3,4)
+print(id(a))
+print(id(b))
+print(a is not b)   #False
+
+# Membership operators : in, not in
+a="Python is funny language"
+b="Python"
+print(b in a)
+print(a[0:6],id(a[0:6]))
+print(id(b))
+print(ord("P"))
+print(bin(ord("P")),bin(ord("y")),bin(ord("t")),bin(ord("h")),bin(ord("o")),bin(ord("n")),sep="")
+print(str(bin(ord("P")))[2:],str(bin(ord("y")))[2:],str(bin(ord("t")))[2:],str(bin(ord("h")))[2:],str(bin(ord("o")))[2:],str(bin(ord("n")))[2:],sep="")
+
+print(b not in a)  #False
+
+# Bitwise operators
+# ~,&,|,<<,>>,^
+
+print(~12)
+
+print()
+
+
+
