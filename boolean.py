@@ -33,3 +33,4 @@ print(bool(int()))
 print(bool(float()))
 print(bool(bool()))
 print(bool(bool(0)))
+

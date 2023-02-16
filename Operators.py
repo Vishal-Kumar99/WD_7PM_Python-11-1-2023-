@@ -137,12 +137,7 @@ print(str(bin(ord("P")))[2:],str(bin(ord("y")))[2:],str(bin(ord("t")))[2:],str(b
 
 print(b not in a)  #False
 
-# Bitwise operators
-# ~,&,|,<<,>>,^
 
-print(~12)
-
-print()
 
 
 
