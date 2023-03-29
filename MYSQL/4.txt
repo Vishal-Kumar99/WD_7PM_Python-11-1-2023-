@@ -1,0 +1,438 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ai                 |
+| ai_martians        |
+| hostel             |
+| information_schema |
+| ip_university      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd_7pm             |
+| we_3               |
+| weeke3             |
+| weekend12          |
+| wkproject          |
+| world              |
++--------------------+
+15 rows in set (0.02 sec)
+
+mysql> use wd_7pm;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ai                 |
+| ai_martians        |
+| hostel             |
+| information_schema |
+| ip_university      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd_7pm             |
+| we_3               |
+| weeke3             |
+| weekend12          |
+| wkproject          |
+| world              |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use wd_7pm;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| student          |
+| student2         |
++------------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from student;
+Empty set (0.02 sec)
+
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
+|  4 | Sohan   |      65655 |
+|  5 | mayank  |      34343 |
+|  6 | naina   |      87878 |
+|  7 | Krishna |      34234 |
+|  8 | Rohan   |      54654 |
++----+---------+------------+
+8 rows in set (0.01 sec)
+
+mysql> select min(tution_fee) from student2;
++-----------------+
+| min(tution_fee) |
++-----------------+
+|           32423 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select max(tution_fee) from student2;
++-----------------+
+| max(tution_fee) |
++-----------------+
+|          100000 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(tution_fee) from student2;
++-----------------+
+| sum(tution_fee) |
++-----------------+
+|          463540 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(tution_fee) from student2;
++-------------------+
+| count(tution_fee) |
++-------------------+
+|                 8 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(tution_fee) from student2;
++-----------------+
+| avg(tution_fee) |
++-----------------+
+|         57942.5 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(tution_fee as e), max(e),avg(e),sum(e),count(e) from student2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as e), max(e),avg(e),sum(e),count(e) from student2' at line 1
+mysql> select min(tution_fee), max(tution_fee),avg(tution_fee),sum(tution_fee),count(tution_fee) from student2;
++-----------------+-----------------+-----------------+-----------------+-------------------+
+| min(tution_fee) | max(tution_fee) | avg(tution_fee) | sum(tution_fee) | count(tution_fee) |
++-----------------+-----------------+-----------------+-----------------+-------------------+
+|           32423 |          100000 |         57942.5 |          463540 |                 8 |
++-----------------+-----------------+-----------------+-----------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where in(select min(tution_fee) from student2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in(select min(tution_fee) from student2)' at line 1
+mysql> select * from student2 in(select min(tution_fee) from student2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in(select min(tution_fee) from student2)' at line 1
+mysql> select * from student2 where tution_fee in(select min(tution_fee) from student2);
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where tution_fee in(32423);
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select tution_fee from student2 where tution_fee in(select min(tution_fee) from student2);
++------------+
+| tution_fee |
++------------+
+|      32423 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
+|  4 | Sohan   |      65655 |
+|  5 | mayank  |      34343 |
+|  6 | naina   |      87878 |
+|  7 | Krishna |      34234 |
+|  8 | Rohan   |      54654 |
++----+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> insert into student2 values(9,"Roshani",45345);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
+|  4 | Sohan   |      65655 |
+|  5 | mayank  |      34343 |
+|  6 | naina   |      87878 |
+|  7 | Krishna |      34234 |
+|  8 | Rohan   |      54654 |
+|  9 | Roshani |      45345 |
++----+---------+------------+
+9 rows in set (0.00 sec)
+
+mysql> update student2 set name ="Roshani Malhotra" where sn=9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student2;
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  1 | krishna          |      32423 |
+|  2 | krishna          |     100000 |
+|  3 | Mohan            |      54353 |
+|  4 | Sohan            |      65655 |
+|  5 | mayank           |      34343 |
+|  6 | naina            |      87878 |
+|  7 | Krishna          |      34234 |
+|  8 | Rohan            |      54654 |
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into student2 values(10,"Roshani",45345);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student2;
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  1 | krishna          |      32423 |
+|  2 | krishna          |     100000 |
+|  3 | Mohan            |      54353 |
+|  4 | Sohan            |      65655 |
+|  5 | mayank           |      34343 |
+|  6 | naina            |      87878 |
+|  7 | Krishna          |      34234 |
+|  8 | Rohan            |      54654 |
+|  9 | Roshani Malhotra |      45345 |
+| 10 | Roshani          |      45345 |
++----+------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student2 where name like 'R%';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  8 | Rohan            |      54654 |
+|  9 | Roshani Malhotra |      45345 |
+| 10 | Roshani          |      45345 |
++----+------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student2 where name like '%Malhotra';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name like 'R%M%';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name like '________M%';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name like 'Ros%M%';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name like 'Ros%';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  9 | Roshani Malhotra |      45345 |
+| 10 | Roshani          |      45345 |
++----+------------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student2 where name like '%a';
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  1 | krishna          |      32423 |
+|  2 | krishna          |     100000 |
+|  6 | naina            |      87878 |
+|  7 | Krishna          |      34234 |
+|  9 | Roshani Malhotra |      45345 |
++----+------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student2 where name like 'n__n_';
++----+-------+------------+
+| sn | name  | tution_fee |
++----+-------+------------+
+|  6 | naina |      87878 |
++----+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2;
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  1 | krishna          |      32423 |
+|  2 | krishna          |     100000 |
+|  3 | Mohan            |      54353 |
+|  4 | Sohan            |      65655 |
+|  5 | mayank           |      34343 |
+|  6 | naina            |      87878 |
+|  7 | Krishna          |      34234 |
+|  8 | Rohan            |      54654 |
+|  9 | Roshani Malhotra |      45345 |
+| 10 | Roshani          |      45345 |
++----+------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student2 where sn between 1 and 3;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
++----+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select min(tution_fee), max(tution_fee),avg(tution_fee),sum(tution_fee),count(tution_fee) from student2;
++-----------------+-----------------+-----------------+-----------------+-------------------+
+| min(tution_fee) | max(tution_fee) | avg(tution_fee) | sum(tution_fee) | count(tution_fee) |
++-----------------+-----------------+-----------------+-----------------+-------------------+
+|           32423 |          100000 |           55423 |          554230 |                10 |
++-----------------+-----------------+-----------------+-----------------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(tution_fee) as min, max(tution_fee) as max,avg(tution_fee) as avg,sum(tution_fee) as total,count(tution_fee) as counting from student2;
++-------+--------+-------+--------+----------+
+| min   | max    | avg   | total  | counting |
++-------+--------+-------+--------+----------+
+| 32423 | 100000 | 55423 | 554230 |       10 |
++-------+--------+-------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> create table hostel(sn int primary key,room_number int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| hostel           |
+| student          |
+| student2         |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
+mysql> drop table student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| hostel           |
+| student2         |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * froms student2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'froms student2' at line 1
+mysql> sleect * from student2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sleect * from student2' at line 1
+mysql> select * from student2;
++----+------------------+------------+
+| sn | name             | tution_fee |
++----+------------------+------------+
+|  1 | krishna          |      32423 |
+|  2 | krishna          |     100000 |
+|  3 | Mohan            |      54353 |
+|  4 | Sohan            |      65655 |
+|  5 | mayank           |      34343 |
+|  6 | naina            |      87878 |
+|  7 | Krishna          |      34234 |
+|  8 | Rohan            |      54654 |
+|  9 | Roshani Malhotra |      45345 |
+| 10 | Roshani          |      45345 |
++----+------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> insert into hostel values(1,202),(3,202),(4,203),(5,402);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from hostel;
++----+-------------+
+| sn | room_number |
++----+-------------+
+|  1 |         202 |
+|  3 |         202 |
+|  4 |         203 |
+|  5 |         402 |
++----+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student2 left join hostel on student2.sn=hostel.sn;
++----+------------------+------------+------+-------------+
+| sn | name             | tution_fee | sn   | room_number |
++----+------------------+------------+------+-------------+
+|  1 | krishna          |      32423 |    1 |         202 |
+|  2 | krishna          |     100000 | NULL |        NULL |
+|  3 | Mohan            |      54353 |    3 |         202 |
+|  4 | Sohan            |      65655 |    4 |         203 |
+|  5 | mayank           |      34343 |    5 |         402 |
+|  6 | naina            |      87878 | NULL |        NULL |
+|  7 | Krishna          |      34234 | NULL |        NULL |
+|  8 | Rohan            |      54654 | NULL |        NULL |
+|  9 | Roshani Malhotra |      45345 | NULL |        NULL |
+| 10 | Roshani          |      45345 | NULL |        NULL |
++----+------------------+------------+------+-------------+
+10 rows in set (0.00 sec)
+
+mysql>
+
+
+

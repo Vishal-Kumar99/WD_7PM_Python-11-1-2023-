@@ -1,0 +1,493 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ai                 |
+| ai_martians        |
+| hostel             |
+| information_schema |
+| ip_university      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd_7pm             |
+| we_3               |
+| weeke3             |
+| weekend12          |
+| wkproject          |
+| world              |
++--------------------+
+15 rows in set (0.03 sec)
+
+mysql> use wd_7pm;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| student          |
+| student2         |
++------------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
+| NULL | Rohan        |      32434 |
++------+--------------+------------+
+5 rows in set (0.02 sec)
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> select * from student where name ="ankit";
++------+-------+------------+
+| sn   | name  | tution_fee |
++------+-------+------------+
+|    2 | ankit |      34234 |
++------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where not name ="ankit";
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
+| NULL | Rohan        |      32434 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> -- order by
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student2 values(3,"Mohan",54353),(4,'Sohan',65655),(5,'mayank',34343),(6,'naina',87878);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee asc;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  5 | mayank  |       34343 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  6 | naina   |       87878 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  5 | mayank  |       34343 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  6 | naina   |       87878 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee desc;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  2 | krishna | 32423432423 |
+|  6 | naina   |       87878 |
+|  4 | Sohan   |       65655 |
+|  3 | Mohan   |       54353 |
+|  5 | mayank  |       34343 |
+|  1 | krishna |       32423 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student2 order by name asc;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  5 | mayank  |       34343 |
+|  3 | Mohan   |       54353 |
+|  6 | naina   |       87878 |
+|  4 | Sohan   |       65655 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student2 order by name desc;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  4 | Sohan   |       65655 |
+|  6 | naina   |       87878 |
+|  3 | Mohan   |       54353 |
+|  5 | mayank  |       34343 |
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student2 values(7,"",34234);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 |         |       34234 |
++----+---------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into student2(sn,tution_fee) values(8,54654);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 |         |       34234 |
+|  8 | NULL    |       54654 |
++----+---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select name from student2 where is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'is null' at line 1
+mysql> select name from student2 where name is null;
++------+
+| name |
++------+
+| NULL |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name is null;
++----+------+------------+
+| sn | name | tution_fee |
++----+------+------------+
+|  8 | NULL |      54654 |
++----+------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 where name is not null;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 |         |       34234 |
++----+---------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select tution_fee from student2 where name is null;
++------------+
+| tution_fee |
++------------+
+|      54654 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 |         |       34234 |
+|  8 | NULL    |       54654 |
++----+---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student2 set name="Rohan" where sn=8;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 |         |       34234 |
+|  8 | Rohan   |       54654 |
++----+---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student2 set name="Krishna" where sn=7;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2' at line 1
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
+|  3 | Mohan   |       54353 |
+|  4 | Sohan   |       65655 |
+|  5 | mayank  |       34343 |
+|  6 | naina   |       87878 |
+|  7 | Krishna |       34234 |
+|  8 | Rohan   |       54654 |
++----+---------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> update student2 set tution_fee=100000 where sn=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
+|  4 | Sohan   |      65655 |
+|  5 | mayank  |      34343 |
+|  6 | naina   |      87878 |
+|  7 | Krishna |      34234 |
+|  8 | Rohan   |      54654 |
++----+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
+| NULL | Rohan        |      32434 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set tution_fee =10000;
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |      10000 |
+|    2 | ankit        |      10000 |
+|    3 | sunil        |      10000 |
+|    2 | ankit Thakur |      10000 |
+| NULL | Rohan        |      10000 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set tution_fee =20000 where sn between 1 and 2;
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |      20000 |
+|    2 | ankit        |      20000 |
+|    3 | sunil        |      10000 |
+|    2 | ankit Thakur |      20000 |
+| NULL | Rohan        |      10000 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set tution_fee=444444 where name= 'Rohan';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |      20000 |
+|    2 | ankit        |      20000 |
+|    3 | sunil        |      10000 |
+|    2 | ankit Thakur |      20000 |
+| NULL | Rohan        |     444444 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update student set sn=3 and set sn=4 where name = 'ankit' and name ='Rohan';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set sn=4 where name = 'ankit' and name ='Rohan'' at line 1
+mysql> delete from student where name="Rohan";
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |      20000 |
+|    2 | ankit        |      20000 |
+|    3 | sunil        |      10000 |
+|    2 | ankit Thakur |      20000 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student;
+Query OK, 4 rows affected (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> roll back;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'roll back' at line 1
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
+|  3 | Mohan   |      54353 |
+|  4 | Sohan   |      65655 |
+|  5 | mayank  |      34343 |
+|  6 | naina   |      87878 |
+|  7 | Krishna |      34234 |
+|  8 | Rohan   |      54654 |
++----+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student2 where limit=2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit=2' at line 1
+mysql> select * from student2 limit=2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=2' at line 1
+mysql> select * from student2 limit 2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
+|  2 | krishna |     100000 |
++----+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student2 order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select * from student2 order by tution_fee desc;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  2 | krishna |     100000 |
+|  6 | naina   |      87878 |
+|  4 | Sohan   |      65655 |
+|  8 | Rohan   |      54654 |
+|  3 | Mohan   |      54353 |
+|  5 | mayank  |      34343 |
+|  7 | Krishna |      34234 |
+|  1 | krishna |      32423 |
++----+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee desc limit 2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  2 | krishna |     100000 |
+|  6 | naina   |      87878 |
++----+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee desc limit 1,2;
++----+-------+------------+
+| sn | name  | tution_fee |
++----+-------+------------+
+|  6 | naina |      87878 |
+|  4 | Sohan |      65655 |
++----+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee limit 1;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student2 order by tution_fee desc limit1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit1' at line 1
+mysql> select * from student2 order by tution_fee desc limit 1;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  2 | krishna |     100000 |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql>

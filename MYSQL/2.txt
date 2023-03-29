@@ -1,0 +1,259 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ai                 |
+| ai_martians        |
+| hostel             |
+| information_schema |
+| ip_university      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| we_3               |
+| weeke3             |
+| weekend12          |
+| wkproject          |
+| world              |
++--------------------+
+14 rows in set (0.08 sec)
+
+mysql> -- creating a databases/schema
+mysql> create database WD_7PM;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ai                 |
+| ai_martians        |
+| hostel             |
+| information_schema |
+| ip_university      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| wd_7pm             |
+| we_3               |
+| weeke3             |
+| weekend12          |
+| wkproject          |
+| world              |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> UsE Wd_7pM;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> create table student(sn int,name varchar(100),tution_fee double);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| student          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
+Empty set (0.01 sec)
+
+mysql> desc student;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| sn         | int          | YES  |     | NULL    |       |
+| name       | varchar(100) | YES  |     | NULL    |       |
+| tution_fee | double       | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into table student values(1,"krishna",30000.80);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student values(1,"krishna",30000.80)' at line 1
+mysql> insert into student values(1,"krishna",30000.80);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+---------+------------+
+| sn   | name    | tution_fee |
++------+---------+------------+
+|    1 | krishna |    30000.8 |
++------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(2,"ankit",34234),(3,'sunil',43242);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+---------+------------+
+| sn   | name    | tution_fee |
++------+---------+------------+
+|    1 | krishna |    30000.8 |
+|    2 | ankit   |      34234 |
+|    3 | sunil   |      43242 |
++------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(2,"ankit Thakur",3423324);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where sn=1;
++------+---------+------------+
+| sn   | name    | tution_fee |
++------+---------+------------+
+|    1 | krishna |    30000.8 |
++------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where sn =2;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    2 | ankit        |      34234 |
+|    2 | ankit Thakur |    3423324 |
++------+--------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create table student2(sn int primary key, name varchar(100),tution_fee double);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_wd_7pm |
++------------------+
+| student          |
+| student2         |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student2;
+Empty set (0.00 sec)
+
+mysql> desc student2;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| sn         | int          | NO   | PRI | NULL    |       |
+| name       | varchar(100) | YES  |     | NULL    |       |
+| tution_fee | double       | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student2 values(1,"krishna",32423);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student2;
++----+---------+------------+
+| sn | name    | tution_fee |
++----+---------+------------+
+|  1 | krishna |      32423 |
++----+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> insert into student2 values(1,"krishna",32423432423);
+ERROR 1062 (23000): Duplicate entry '1' for key 'student2.PRIMARY'
+mysql> insert into student2 values(2,"krishna",32423432423);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student2;
++----+---------+-------------+
+| sn | name    | tution_fee  |
++----+---------+-------------+
+|  1 | krishna |       32423 |
+|  2 | krishna | 32423432423 |
++----+---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
++------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(name,tution_fee) values("Rohan",32434);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
+| NULL | Rohan        |      32434 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student2(name,tution_fee) values("Rohan",234234);
+ERROR 1364 (HY000): Field 'sn' doesn't have a default value
+mysql> select * from student;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    1 | krishna      |    30000.8 |
+|    2 | ankit        |      34234 |
+|    3 | sunil        |      43242 |
+|    2 | ankit Thakur |    3423324 |
+| NULL | Rohan        |      32434 |
++------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where sn=2 and name="ankit";
++------+-------+------------+
+| sn   | name  | tution_fee |
++------+-------+------------+
+|    2 | ankit |      34234 |
++------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where sn=2 or name="ankit"
+    -> ;
++------+--------------+------------+
+| sn   | name         | tution_fee |
++------+--------------+------------+
+|    2 | ankit        |      34234 |
+|    2 | ankit Thakur |    3423324 |
++------+--------------+------------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
